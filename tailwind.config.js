@@ -10,6 +10,14 @@ module.exports = withMT({
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    colors: {
+      'text': '#05040c',
+      'background': '#ebe7f8',
+      'primary': '#ad9de2',
+      'secondary': '#541235',
+      'accent': '#4a30a1',
+     },
+     
     extend: {
       fontFamily:{
         cust: ' cursive'
