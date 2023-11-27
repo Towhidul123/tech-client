@@ -26,13 +26,13 @@ const NavBar = () => {
     } to='/products'>Products</NavLink></li>
 
 
-   
+
 
     {user &&
       <>
 
 
-    
+
 
 
       </>
@@ -79,15 +79,27 @@ const NavBar = () => {
 
             <div className="p-2 gap-2 flex flex-col md:flex-row items-center hover:bg-black   rounded-lg ">
               <div className=" flex justify-center ">
-                <img
-                  className="relative  inline-block h-6 w-6 rounded-md object-cover object-center "
-                  alt="Image placeholder"
-                  src={user.photoURL}
-                />
+
+                <div className="dropdown dropdown-bottom dropdown-end text-black">
+                  <label tabIndex={0} className=" m-1">
+                    <img
+                      className="relative  inline-block h-6 w-6 rounded-md object-cover object-center "
+                      alt="Image placeholder"
+                      src={user.photoURL}
+                    />
+                  </label>
+                  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><h2 className="">{user.displayName}</h2></li>
+                    <li><button className="  px-2 rounded-lg" >DashBoard</button></li>
+                    <li><button className="  px-2 rounded-lg" onClick={handleLogOut}>Sign Out</button></li>
+                  </ul>
+                </div>
+
+
               </div>
-              <h2 className="">{user.displayName}</h2>
+              
             </div>
-            <button className="hover:bg-black  px-2 rounded-lg" onClick={handleLogOut}>Sign Out</button>
+            
           </>
             :
             <NavLink className="hover:bg-black  px-2 rounded-lg" to='/register'>Sign Up</NavLink>

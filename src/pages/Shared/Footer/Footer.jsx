@@ -1,33 +1,38 @@
-
-
+import { FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa";
 const Footer = () => {
     return (
-        <footer className="mt-5 footer p-10 bg-base-200 text-base-content">
-            <aside>
-                <img src="" alt="" />
-                <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
-            </aside>
-            <nav>
-                <header className="footer-title">Services</header>
-                <a className="link link-hover">Branding</a>
-                <a className="link link-hover">Design</a>
-                <a className="link link-hover">Marketing</a>
-                <a className="link link-hover">Advertisement</a>
-            </nav>
-            <nav>
-                <header className="footer-title">Company</header>
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
-                <a className="link link-hover">Jobs</a>
-                <a className="link link-hover">Press kit</a>
-            </nav>
-            <nav>
-                <header className="footer-title">Legal</header>
-                <a className="link link-hover">Terms of use</a>
-                <a className="link link-hover">Privacy policy</a>
-                <a className="link link-hover">Cookie policy</a>
-            </nav>
-        </footer>
+        <>
+           
+                <footer className="mt-5 footer p-10 bg-base-200 text-base-content">
+                    <aside className="justify-center items-center">
+                        <img src="icon.png" alt="" />
+                        <h2 className="font-cust font-semibold text-xs md:font-bold md:text-xl flex items-center justify-center">TechFusion</h2>
+                    </aside>
+                    <nav>
+                        <header className="footer-title">Follow Us</header>
+                        <div className="flex gap-2">
+                            <FaYoutube />
+                            <FaXTwitter />
+                            <FaFacebook />
+                        </div>
+
+                    </nav>
+                    <nav>
+                        <header className="footer-title">Contact Us</header>
+                        <h2>
+                            36 Sonargaon Janapath <br /> 2nd Floor, Sector 9 <br /> Uttara
+                            <br />Tel: +8801755516969
+                        </h2>
+                    </nav>
+
+                </footer>
+                <div className="footer text-center items-center justify-center bg-base-200 text-base-content">
+                    <h2>Copyright © 2023, TechFusion, All Rights Reserved</h2>
+                </div>
+           
+        </>
     );
 };
 

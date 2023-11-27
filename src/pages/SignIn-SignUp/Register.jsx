@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 const Register = () => {
@@ -11,6 +12,10 @@ const Register = () => {
     const [registerError, setRegisterError] = useState('');
     const [success, setSuccess] = useState('');
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleRegister = e => {
         e.preventDefault();
@@ -49,6 +54,8 @@ const Register = () => {
             .then(result => {
                 console.log(result)
                 setSuccess('User Created Successfully')
+                navigate(from, {replace:true});
+                toast.success('Logged In Successfully')
             })
             .catch(error => {
                 console.error(error);
