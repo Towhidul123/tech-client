@@ -9,6 +9,42 @@ const ProductDetails = () => {
 
     const { user } = useContext(AuthContext)
 
+
+    const [reviews, setReviews] = useState([]);
+
+    const [reviewData, setReviewData] = useState({ username: '', rating: '', comment: '' });
+
+
+
+    const handleReviewSubmit = (e) => {
+        e.preventDefault();
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                roomId: _id,
+                username: reviewData.username,
+                userImage: reviewData.userImage,
+                rating: reviewData.rating,
+                comment: reviewData.comment,
+               // timestamp: new Date().toISOString(),
+            }),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+
+                    setReviewData({ username: user.displayName, userImage: user.photoURL, rating: '', comment: '' });
+
+                }
+            });
+    };
+
+
+
     useEffect(() => {
         console.log('Fetching data for productId:', productId);
         fetch(`http://localhost:5000/products/${productId}`)
@@ -42,14 +78,43 @@ const ProductDetails = () => {
                         <a key={linkType} href={product.external_links[linkType]}>{linkType}</a>
                     ))}</h2>
                     <h2>Upvote Count: {product.upvote_count}</h2>
-               
-                        <div className=''>
-                            <button className='btn'>Upvote</button>
-                            <button className='btn'>Report</button>
-                        </div>
+
+                    <div className=''>
+                        <button className='btn'>Upvote</button>
+                        <button className='btn'>Report</button>
+                    </div>
                 </div>
 
             </div>
+
+
+            <div className='p-10 flex justify-center items-center flex-col'>
+
+                <h3 className='text-3xl'>Submit a Review</h3>
+
+                <form onSubmit={handleReviewSubmit} className=" flex flex-col items-center ">
+
+                    <img className='w-10' src={user.photoURL} alt="" />
+                    <p>Username: {user.displayName}</p>
+
+                    <input
+                        type="number"
+                        placeholder="Rating"
+                        value={reviewData.rating}
+                        onChange={(e) => setReviewData({ ...reviewData, rating: e.target.value })}
+                        required
+                    />
+                    <textarea
+                        placeholder="Comment"
+                        value={reviewData.comment}
+                        onChange={(e) => setReviewData({ ...reviewData, comment: e.target.value })}
+                        required
+                    />
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+
+
         </>
     );
 };
