@@ -53,6 +53,25 @@ const Register = () => {
         createUser(email, password, name, image)
             .then(result => {
                 console.log(result)
+
+                const userInfo = {
+                    email: email,
+                    name:name
+                }
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userInfo),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    navigate(from, { replace: true });
+                    toast.success('Logged In Successfully');
+                })
+
                 setSuccess('User Created Successfully')
                 navigate(from, {replace:true});
                 toast.success('Logged In Successfully')
