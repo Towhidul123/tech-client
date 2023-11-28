@@ -1,13 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import ReviewComponent from '../Review/ReviewComponent';
+
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 
 const ProductDetails = () => {
 
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
 
-    const { user } = useContext(AuthContext)
+    const { user, loading } = useContext(AuthContext)
 
 
     const [reviews, setReviews] = useState([]);
@@ -30,7 +39,7 @@ const ProductDetails = () => {
                 userImage: reviewData.userImage,
                 rating: reviewData.rating,
                 comment: reviewData.comment,
-               // timestamp: new Date().toISOString(),
+                // timestamp: new Date().toISOString(),
             }),
         })
             .then(res => res.json())
@@ -49,7 +58,12 @@ const ProductDetails = () => {
         console.log('Fetching data for productId:', productId);
         fetch(`http://localhost:5000/products/${productId}`)
             .then(res => res.json())
-            .then(data => setProduct(data))
+            .then(data => {
+                setProduct(data);
+                fetch(`http://localhost:5000/reviews?roomId=${data._id}`)
+                    .then(res => res.json())
+                    .then(reviewsData => setReviews(reviewsData));
+            })
             .catch(error => console.error('Error fetching data:', error));
     }, [productId]);
 
@@ -85,6 +99,34 @@ const ProductDetails = () => {
                     </div>
                 </div>
 
+            </div>
+
+
+            <div className='p-10'>
+                <h3 className='text-center text-3xl'>Reviews</h3>
+                <div className=' flex justify-center items-center'>
+
+                    <Swiper slidesPerView={2}
+                        spaceBetween={30}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[Pagination]}
+                        className="mySwiper">
+
+                        {reviews.map((review) => (
+                            <SwiperSlide key={review._id}>
+                                <ReviewComponent
+                                    username={review.username}
+                                    rating={review.rating}
+                                    comment={review.comment}
+                                    userImage={review.userImage}
+                                />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+
+                </div>
             </div>
 
 

@@ -90,7 +90,7 @@ const NavBar = () => {
                   </label>
                   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><h2 className="">{user.displayName}</h2></li>
-                    <li><button className="  px-2 rounded-lg" >DashBoard</button></li>
+                    <li><Link to='/dashboard/MyProfile'><button className="  px-2 rounded-lg" >DashBoard</button></Link></li>
                     <li><button className="  px-2 rounded-lg" onClick={handleLogOut}>Sign Out</button></li>
                   </ul>
                 </div>
