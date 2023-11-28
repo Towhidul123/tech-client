@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const MyProduct = () => {
+
+    const [card, setCard] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/dashboard/userProduct')
+            .then(res => res.json())
+            .then(data => setCard(data))
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
+
+
     return (
         <div>
             <h2 className='text-6xl text-center'>My Products</h2>
@@ -14,14 +25,15 @@ const MyProduct = () => {
                                 
                             </th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>No. of votes</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        <tr>
+                       
+                       {
+                        card.map(item => <tr key={item._id}>
                             <th>
                                 <label>
                                     <input type="checkbox" className="checkbox" />
@@ -49,7 +61,11 @@ const MyProduct = () => {
                             <th>
                                 <button className="btn btn-ghost btn-xs">details</button>
                             </th>
-                        </tr>
+                        </tr>)
+                       }
+
+
+                        
                        
                     </tbody>
                     
