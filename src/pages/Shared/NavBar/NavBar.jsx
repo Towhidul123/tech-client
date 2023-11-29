@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
-
+import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
 
 const NavBar = () => {
@@ -89,9 +90,9 @@ const NavBar = () => {
                     />
                   </label>
                   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><h2 className="">{user.displayName}</h2></li>
-                    <li><Link to='/dashboard/MyProfile'><button className="  px-2 rounded-lg" >DashBoard</button></Link></li>
-                    <li><button className="  px-2 rounded-lg" onClick={handleLogOut}>Sign Out</button></li>
+                    <li><h2 className=""><FaUserAlt />{user.displayName}</h2></li>
+                    <Link to='/dashboard/MyProfile'> <li><button className="  px-2 rounded-lg" ><MdDashboard />DashBoard</button></li></Link>
+                    <li><button className="  px-2 rounded-lg" onClick={handleLogOut}><FaSignOutAlt />Sign Out</button></li>
                   </ul>
                 </div>
 

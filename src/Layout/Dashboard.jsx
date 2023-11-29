@@ -1,11 +1,13 @@
 import React from 'react';
 import { FaUsers } from 'react-icons/fa6';
 import { NavLink, Outlet } from 'react-router-dom';
+import useAdmin from '../pages/Dashboard/MyProfile/useAdmin';
+import useModerator from '../pages/Dashboard/Moderator/useModerator';
 
 const Dashboard = () => {
 
-    const isAdmin = true;
-
+    const [isAdmin] = useAdmin();
+    const [isModerator] = useModerator();
     return (
         <div className='flex'>
             {/* dashboard sidebar */}
@@ -15,13 +17,20 @@ const Dashboard = () => {
                     {
                         isAdmin ? <>
                             <li><NavLink to='/'>Home</NavLink></li>
-                            <li><NavLink to='/dashboard/'>Statistics Page</NavLink></li>
+                            <li><NavLink to='/dashboard/Statistics'>Statistics Page</NavLink></li>
                             <li><NavLink to='/dashboard/users'><FaUsers></FaUsers> Manage Users</NavLink></li>
-                            <li><NavLink to='/dashboard/'>Manage Coupons</NavLink></li>
+                            <li><NavLink to='/dashboard/Coupon'>Manage Coupons</NavLink></li>
 
                         </>
                             :
-                            <>
+                        isModerator ? <>
+                            <li><NavLink to='/'>Home</NavLink></li>
+                            <li><NavLink to='/dashboard/ProductReview'>Product Review</NavLink></li>
+                            <li><NavLink to='/dashboard/ReportedContent'><FaUsers></FaUsers> Reported Content</NavLink></li>
+                           
+                        </>
+                            :
+                            <>  <li><NavLink to='/'>Home</NavLink></li>
                                 <li><NavLink to='/dashboard/MyProfile'>My Profile</NavLink></li>
                                 <li><NavLink to='/dashboard/AddProducts'>Add Products</NavLink></li>
                                 <li><NavLink to='/dashboard/MyProduct'>My Products</NavLink></li>

@@ -29,7 +29,7 @@ const Trending = () => {
 
             <div className='mt-4' >
 
-                <Link to="/productDetails">
+                <Link to="/products">
                     <button className='btn'>Show All Products</button>
                 </Link>
             </div>

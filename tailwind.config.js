@@ -13,8 +13,8 @@ module.exports = withMT({
     colors: {
       'text': '#05040c',
       'background': '#ebe7f8',
-      'primary': '#ad9de2',
-      'secondary': '#541235',
+      'gg': '#ad9de2',
+      'ez': '#541235',
       'accent': '#4a30a1',
      },
      
