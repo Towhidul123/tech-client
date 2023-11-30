@@ -91,7 +91,7 @@ const NavBar = () => {
                   </label>
                   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><h2 className=""><FaUserAlt />{user.displayName}</h2></li>
-                    <Link to='/dashboard/MyProfile'> <li><button className="  px-2 rounded-lg" ><MdDashboard />DashBoard</button></li></Link>
+                    <Link to='/dashboard/DashBoard'> <li><button className="  px-2 rounded-lg" ><MdDashboard />DashBoard</button></li></Link>
                     <li><button className="  px-2 rounded-lg" onClick={handleLogOut}><FaSignOutAlt />Sign Out</button></li>
                   </ul>
                 </div>

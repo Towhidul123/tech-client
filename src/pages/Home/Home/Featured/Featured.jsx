@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FeaturedCard from './FeaturedCard';
 
 const Featured = () => {
+    
     const [menu, setMenu] = useState([]);
     useEffect(() => {
         fetch('http://localhost:5000/menu')

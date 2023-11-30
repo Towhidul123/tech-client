@@ -12,6 +12,10 @@ import AddProduct from "../pages/Dashboard/MyProfile/AddProduct";
 import MyProduct from "../pages/Dashboard/MyProfile/MyProduct";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import Error from "../pages/Error/Error";
+import DefaultDashboard from "../pages/Dashboard/DefaultDashboard";
+import ProductReview from "../pages/Dashboard/Moderator/ProductReview";
+import ReportedContent from "../pages/Dashboard/Moderator/ReportedContent";
+import ModReview from "../pages/Dashboard/Moderator/ModReview";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +47,13 @@ const router = createBrowserRouter([
           element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/products/${params.productId}`)
 
+        },
+
+        {
+          path:'/productReview/:productId',
+          element:<PrivateRoute><ModReview></ModReview></PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/productReview/${params.productId}`)
+
         }
 
 
@@ -55,6 +66,10 @@ const router = createBrowserRouter([
       element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       errorElement:<Error></Error>,
       children:[
+        {
+          path:'DashBoard',
+          element:<DefaultDashboard></DefaultDashboard>
+        },
         {
           path:'MyProfile',
           element:<MyProfile></MyProfile>
@@ -71,6 +86,15 @@ const router = createBrowserRouter([
         {
           path:'users',
           element:<AllUsers></AllUsers>
+        },
+
+        {
+          path:'ProductReview',
+          element:<ProductReview></ProductReview>
+        },
+        {
+          path:'ReportedContent',
+          element:<ReportedContent></ReportedContent>
         }
       ]
     }

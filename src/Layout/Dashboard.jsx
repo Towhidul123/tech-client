@@ -43,7 +43,7 @@ const Dashboard = () => {
                     {isModerator && (
                         <>
                             <li><NavLink to='/dashboard/ProductReview' className=" py-2 px-4"><GoCodeReview />Product Review</NavLink></li>
-                            <li><NavLink to='/dashboard/ReportedContent' className=" py-2 px-4"><FaUsers className="inline" /><MdReport /> Reported Content</NavLink></li>
+                            <li><NavLink to='/dashboard/ReportedContent' className=" py-2 px-4"><MdReport /> Reported Content</NavLink></li>
                         </>
                     )}
 
