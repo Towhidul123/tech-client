@@ -1,5 +1,9 @@
 import React from 'react';
 
+
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
+
 const ReviewComponent = ({ username, rating, comment, userImage }) => {
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg mb-4 flex">
@@ -15,14 +19,18 @@ const ReviewComponent = ({ username, rating, comment, userImage }) => {
 
 
             <div>
-
-                <p>Rating: {rating}</p>
+                <Rating
+                    style={{ maxWidth: 150 }}
+                    value={rating}
+                    readOnly
+                />
+               
                 <p>Comment: {comment}</p>
             </div>
 
         </div>
 
-        
+
     );
 };
 

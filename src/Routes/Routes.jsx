@@ -11,11 +11,13 @@ import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import AddProduct from "../pages/Dashboard/MyProfile/AddProduct";
 import MyProduct from "../pages/Dashboard/MyProfile/MyProduct";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import Error from "../pages/Error/Error";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement:<Error></Error>,
       children:[
         {
             path:'/',

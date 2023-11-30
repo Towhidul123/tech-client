@@ -14,7 +14,14 @@ import { FaThumbsUp } from 'react-icons/fa6';
 import toast from 'react-hot-toast';
 import { MdReport } from "react-icons/md";
 
+
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
+
+
 const ProductDetails = () => {
+
+
 
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
@@ -26,19 +33,19 @@ const ProductDetails = () => {
 
     const [reviewData, setReviewData] = useState({ username: '', rating: '', comment: '' });
 
-    if(loading){
+    if (loading) {
         return <span className="flex place-content-center justify-center justify-items-center items-center loading loading-spinner loading-lg"></span>
     }
 
 
     //upvote
-    
+
     const handleUpvoteClick = async () => {
 
         if (loading) {
             return toast.loading("Upvoting...");
         }
-    
+
 
         if (user) {
             try {
@@ -46,13 +53,13 @@ const ProductDetails = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${user.token}`, 
+                        'Authorization': `Bearer ${user.token}`,
                     },
                 });
 
                 if (response.ok) {
                     toast.success("Upvoted.");
-                   
+
                 } else {
                     toast.error("Failed to upvote.");
                 }
@@ -69,20 +76,20 @@ const ProductDetails = () => {
         if (loading) {
             return toast.loading("Reporting...");
         }
-    
+
         if (user) {
             try {
                 const response = await fetch(`http://localhost:5000/api/report/${_id}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${user.token}`, 
+                        'Authorization': `Bearer ${user.token}`,
                     },
                 });
-    
+
                 if (response.ok) {
                     toast.success("Reported successfully.");
-                  
+
                 } else {
                     toast.error("Failed to report.");
                 }
@@ -99,7 +106,7 @@ const ProductDetails = () => {
 
     const handleReviewSubmit = (e) => {
         e.preventDefault();
-        console.log('Review Data:', reviewData); 
+        console.log('Review Data:', reviewData);
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
@@ -159,11 +166,11 @@ const ProductDetails = () => {
                 <div className='space-y-2 space-x-2'>
                     <h1 className='ml-2 text-3xl font-semibold'>{product.name}</h1>
                     <p className='text-xl font-medium'>{product.description}</p>
-                    <h2 className='text-xl'>Tags: {product. tags.map((tag, index) => (
-                                <span key={index} className="badge bg-primary text-white mr-2 mb-2">
-                                    {tag}
-                                </span>
-                            ))}</h2>
+                    <h2 className='text-xl'>Tags: {product.tags.map((tag, index) => (
+                        <span key={index} className="badge bg-primary text-white mr-2 mb-2">
+                            {tag}
+                        </span>
+                    ))}</h2>
                     <h2 className='text-xl'>External Links: {Object.keys(product.external_links).map(linkType => (
                         <a key={linkType} href={product.external_links[linkType]}>{linkType}</a>
                     ))}</h2>
@@ -171,7 +178,7 @@ const ProductDetails = () => {
 
                     <div className='space-x-2'>
                         <button className='btn btn-primary'>  <span onClick={handleUpvoteClick}>
-                            
+
                             <FaThumbsUp />
                         </span>Upvote</button>
                         <button className='btn btn-secondary'><span onClick={handleReport}><MdReport /> </span>Report</button>
@@ -209,22 +216,22 @@ const ProductDetails = () => {
             </div>
 
 
-            <div className='p-10 flex justify-center items-center flex-col'>
-
+            <div className='p-10 flex justify-center items-center flex-col shadow-lg'>
                 <h3 className='text-3xl mb-2'>Submit a Review</h3>
 
-                <form onSubmit={handleReviewSubmit} className=" flex flex-col items-center ">
+                <form onSubmit={handleReviewSubmit} className=" flex flex-col items-center">
 
                     <img className='w-10' src={user.photoURL} alt="" />
                     <p>Username: {user.displayName}</p>
 
-                    <input
-                        type="number"
-                        placeholder="Rating"
+                    <Rating
+                        style={{ maxWidth: 150 }}
                         value={reviewData.rating}
-                        onChange={(e) => setReviewData({ ...reviewData, rating: e.target.value })}
-                        required
+                        onChange={(value) => setReviewData({ ...reviewData, rating: value })}
+                        isRequired
                     />
+
+
                     <textarea
                         placeholder="Comment"
                         value={reviewData.comment}
@@ -234,6 +241,7 @@ const ProductDetails = () => {
                     <button className='btn' type="submit">Submit Review</button>
                 </form>
             </div>
+
 
 
         </>
