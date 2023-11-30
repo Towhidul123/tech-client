@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaThumbsUp } from "react-icons/fa6";
 import { AuthContext } from '../../../../Providers/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
@@ -24,14 +24,13 @@ const FeaturedCard = ({ item }) => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${user.token}`, // Include the user's token
+                        'Authorization': `Bearer ${user.token}`, 
                     },
                 });
 
                 if (response.ok) {
                     toast.success("Upvoted.");
-                    // You might want to update the UI with the updated upvote_count
-                    // You can use a state management library like Redux for this purpose
+                
                 } else {
                     toast.error("Failed to upvote.");
                 }
@@ -44,6 +43,7 @@ const FeaturedCard = ({ item }) => {
         }
     };
 
+  
 
     return (
         <>

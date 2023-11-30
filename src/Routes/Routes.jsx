@@ -16,6 +16,7 @@ import DefaultDashboard from "../pages/Dashboard/DefaultDashboard";
 import ProductReview from "../pages/Dashboard/Moderator/ProductReview";
 import ReportedContent from "../pages/Dashboard/Moderator/ReportedContent";
 import ModReview from "../pages/Dashboard/Moderator/ModReview";
+import AdminStats from "../pages/Dashboard/Admin/AdminStats";
 
 const router = createBrowserRouter([
     {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
         {
           path:'ReportedContent',
           element:<ReportedContent></ReportedContent>
+        },
+        {
+          path:'Statistics',
+          element:<AdminStats></AdminStats>
         }
       ]
     }
