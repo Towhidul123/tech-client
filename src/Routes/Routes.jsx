@@ -17,6 +17,7 @@ import ProductReview from "../pages/Dashboard/Moderator/ProductReview";
 import ReportedContent from "../pages/Dashboard/Moderator/ReportedContent";
 import ModReview from "../pages/Dashboard/Moderator/ModReview";
 import AdminStats from "../pages/Dashboard/Admin/AdminStats";
+import ManageCoupon from "../pages/Dashboard/Admin/ManageCoupon";
 
 const router = createBrowserRouter([
     {
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
         {
           path:'Statistics',
           element:<AdminStats></AdminStats>
+        },
+        {
+          path:'Coupon',
+          element:<ManageCoupon></ManageCoupon>
         }
       ]
     }
