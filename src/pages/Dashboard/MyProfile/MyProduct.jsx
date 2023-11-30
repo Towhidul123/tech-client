@@ -48,7 +48,7 @@ const MyProduct = () => {
 
 
     return (
-        <div>
+        <div  className='container mx-auto'>
             <h2 className='text-6xl text-center'>My Products</h2>
 
             <div className="overflow-x-auto">
@@ -62,7 +62,7 @@ const MyProduct = () => {
                             <th>Name</th>
                             <th>No. of votes</th>
                             <th>Status</th>
-                            <th></th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>

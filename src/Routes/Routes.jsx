@@ -53,6 +53,7 @@ const router = createBrowserRouter([
     {
       path:'dashboard',
       element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      errorElement:<Error></Error>,
       children:[
         {
           path:'MyProfile',
