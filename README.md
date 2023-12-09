@@ -15,5 +15,12 @@
 # Empowering Admin Control:
 - TechFusion's admin dashboard provides a comprehensive set of tools for website administrators. The inclusion of an admin statistics pie chart enables administrators to gain valuable insights into the platform's performance. Moreover, administrators have the authority to manage users effectively by removing or assigning admin or moderator roles. This level of control ensures that the website operates smoothly, fostering a healthy and secure online tech community.
 
+# Technologies used:
+<p align="left">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=firebase,mongodb,react,tailwind,express,nodejs&perline=8" />
+  </a>
+</p>
+
 
 - client-side live link- https://ass-12-bad45.web.app/
